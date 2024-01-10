@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 export function POST(request: NextRequest) {
-  console.log(request.body);
-  return NextResponse.json(
+  const response = NextResponse.json(
     {
       body: request.body,
       path: request.nextUrl.pathname,
@@ -13,4 +12,6 @@ export function POST(request: NextRequest) {
       status: 200,
     }
   );
+  console.log({ response });
+  return response;
 }
