@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@knocklabs/node": "^0.5.1",
     "@vercel/kv": "^1.0.1",
     "next": "14.0.4",
     "react": "^18",
