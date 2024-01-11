@@ -17,12 +17,17 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
     const walletAddress = data.result[0].account_address;
     await kv.sadd(walletAddress, JSON.stringify(messageBody.data));
+    await knock.users.identify(walletAddress);
     await knock.workflows.trigger("imtblzkevmnft", {
-      recipients: [walletAddress],
+      recipients: [
+        {
+          collection: "$users",
+          id: walletAddress,
+        },
+      ],
       data: messageBody,
     });
   } catch (error) {
-    console.error(error);
     return NextResponse.json({ status: 500 });
   }
   return NextResponse.json({ status: 201 });
